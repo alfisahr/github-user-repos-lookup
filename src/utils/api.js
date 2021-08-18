@@ -10,7 +10,7 @@ function getErrorMsg(message, username) {
 	return message;
 }
 
-export function getProfile(username) {
+function getProfile(username) {
 	return fetch(`https://api.github.com/users/${username}${params}`)
 		.then((res) => res.json())
 		.then((profile) => {
@@ -20,4 +20,26 @@ export function getProfile(username) {
 
 			return profile;
 		});
+}
+
+function getRepos(username) {
+	return fetch(`https://api.github.com/users/${username}/repos${params}&per_page=100`)
+	.then((res) => res.json())
+		.then((repos) => {
+			if (repos.message) {
+				throw new Error(getErrorMsg(repos.message, username));
+			}
+
+			return repos;
+		});
+}
+
+export function getUserData(username) {
+	return Promise.all([
+		getProfile(username),
+		getRepos(username)
+	]).then(([profile,repos]) => ({
+		profile,
+		repos
+	}))
 }
