@@ -13,9 +13,13 @@ function App() {
       setUserResult(user)
     });
   };
+  const handleClear = () => {
+    setUserResult(null);
+    setUsername(null)
+  }
 
   if (userResult !== null) {
-    return <div className="App"><UserResult userResult={userResult} /></div>;
+    return <div className="App"><UserResult userResult={userResult} clearHandler={handleClear} /></div>;
   } else {
     return (
       <div className="App center">
