@@ -5,12 +5,16 @@ import "./App.css";
 
 function App() {
   const [username, setUsername] = useState(null);
-  const [userResult, setUserResult] = useState(null)
+  const [userResult, setUserResult] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     getUserData(username).then((user) => {
       setUserResult(user)
+    })
+    .catch((err) => {
+      setErrorMsg(err.message)
     });
   };
   const handleClear = () => {
@@ -43,6 +47,7 @@ function App() {
               </button>
             </form>
           </div>
+            {errorMsg !== null ? <p className="error">{errorMsg}</p> : ''}
         </div>
       </div>
     );

@@ -48,7 +48,7 @@
 }
 
 .sidebar .profile {
-  border: 1px solid #eee;
+  border: 1px solid #ddd;
   padding: 20px;
   border-radius: 5px;
 }
@@ -57,7 +57,7 @@
   height: 140px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 0 auto;
+  margin: 0 auto 10px auto;
 }
 .sidebar .profile .thumb img {
   width: 100%;
@@ -67,6 +67,23 @@
   margin: 0;
   padding: 0;
   font-size: 18px;
+}
+.sidebar .profile .user-login {
+  text-align: center;
+  font-size: 90%;
+  color: #777;
+}
+.sidebar .profile .company,
+.sidebar .profile .blog,
+.sidebar .profile .location {
+  margin: 0 0 5px 0;
+  font-size: 90%;
+}
+.sidebar .profile .company svg,
+.sidebar .profile .blog svg,
+.sidebar .profile .location svg {
+  color: #999;
+  font-size: 80%;
 }
 
 .container .content {
@@ -86,6 +103,10 @@
   margin: 0;
   padding: 0;
   font-size: 15px;
+}
+.container .content .repos-list li .repo-name a {
+  color: #111;
+  text-decoration: none;
 }
 .container .content .repos-list li .stats {
   display: flex;
@@ -131,4 +152,8 @@
   color: #fff;
   text-transform: uppercase;
   font-weight: 700;
+}
+p.error {
+  color: #ff0000;
+  text-align: center;
 }

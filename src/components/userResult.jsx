@@ -18,16 +18,10 @@ const UserResult = ({ userResult, clearHandler }) => {
 						</div>
 						<h2 className="name">{profile.name}</h2>
 						<div className="user-login">@{profile.login}</div>
-						<p className="bio">{profile.bio}</p>
-						<div className="company">
-							<FaRegBuilding /> {profile.company}
-						</div>
-						<div className="blog">
-							<FaLink /> {profile.blog}
-						</div>
-						<div className="location">
-							<FaMapMarker /> {profile.location}
-						</div>
+						{profile.bio !== null ? <p className="bio">{profile.bio}</p> : ''}
+						{profile.company !== null ? <div className="company"><FaRegBuilding /> {profile.company}</div> : ''}
+						{profile.blog !== null ? <div className="blog"><FaLink /> {profile.blog}</div> : ''}
+						{profile.location !== null ? <div className="location"><FaMapMarker /> {profile.location}</div> : ''}
 					</div>
 				</div>
 				<div className="content">
@@ -37,15 +31,13 @@ const UserResult = ({ userResult, clearHandler }) => {
 								return (
 									<li key={i}>
 										<h3 className="repo-name">
-											{repo.name}
+											<a href={repo.html_url} target="_blank" rel="noreferrer">{repo.name}</a>
 										</h3>
 										<p className="desc">
 											{repo.description}
 										</p>
 										<div className="stats">
-											<div className="language">
-												{repo.language}
-											</div>
+											{repo.language !== null ? <div className="language">{repo.language}</div> : ''}
 											<div className="star">
 												<FaRegStar />{" "}
 												{repo.stargazers_count}
