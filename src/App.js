@@ -15,10 +15,10 @@ function App() {
   };
 
   if (userResult !== null) {
-    return <UserResult userResult={userResult} />;
+    return <div className="App"><UserResult userResult={userResult} /></div>;
   } else {
     return (
-      <div className="App">
+      <div className="App center">
         <div className="content-wrapper">
           <div className="app-title">
             <span className="main">GitHub</span>{" "}
