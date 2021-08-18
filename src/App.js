@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getUserData } from "./utils/api";
+import { getUserData, getRepos } from "./utils/api";
 import UserResult from './components/userResult'
 import "./App.css";
 
@@ -21,9 +21,15 @@ function App() {
     setUserResult(null);
     setUsername(null)
   }
+  const handleLoadMore = () => {
+    const page = userResult.repos.length / 10 + 1
+    getRepos(username, page).then((repos) => {
+      setUserResult({...userResult, repos: [...userResult.repos, ...repos]})
+    })
+  }
 
   if (userResult !== null) {
-    return <div className="App"><UserResult userResult={userResult} clearHandler={handleClear} /></div>;
+    return <div className="App"><UserResult username={username} userResult={userResult} clearHandler={handleClear} loadMoreHandler={handleLoadMore} /></div>;
   } else {
     return (
       <div className="App center">

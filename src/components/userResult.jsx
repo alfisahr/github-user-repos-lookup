@@ -1,14 +1,31 @@
-import { FaRegBuilding, FaLink, FaMapMarker, FaRegStar, FaArrowLeft } from "react-icons/fa";
+import {
+	FaRegBuilding,
+	FaLink,
+	FaMapMarker,
+	FaRegStar,
+	FaArrowLeft,
+} from "react-icons/fa";
 
-const UserResult = ({ userResult, clearHandler }) => {
-	console.log(userResult);
+const UserResult = ({
+	username,
+	userResult,
+	clearHandler,
+	loadMoreHandler,
+}) => {
 	const { profile, repos } = userResult;
 
 	return (
 		<div className="content-wrapper">
 			<div className="container header-section">
-				<div className="icon-top"><button onClick={clearHandler}><FaArrowLeft /></button></div>
-				<div className="app-name"><span className="main">GitHub</span> <span className="secondary">User Lookup</span></div>
+				<div className="icon-top">
+					<button onClick={clearHandler}>
+						<FaArrowLeft />
+					</button>
+				</div>
+				<div className="app-name">
+					<span className="main">GitHub</span>{" "}
+					<span className="secondary">User Lookup</span>
+				</div>
 			</div>
 			<div className="container content-section">
 				<div className="sidebar">
@@ -18,10 +35,32 @@ const UserResult = ({ userResult, clearHandler }) => {
 						</div>
 						<h2 className="name">{profile.name}</h2>
 						<div className="user-login">@{profile.login}</div>
-						{profile.bio !== null ? <p className="bio">{profile.bio}</p> : ''}
-						{profile.company !== null ? <div className="company"><FaRegBuilding /> {profile.company}</div> : ''}
-						{profile.blog !== null ? <div className="blog"><FaLink /> {profile.blog}</div> : ''}
-						{profile.location !== null ? <div className="location"><FaMapMarker /> {profile.location}</div> : ''}
+						{profile.bio !== null ? (
+							<p className="bio">{profile.bio}</p>
+						) : (
+							""
+						)}
+						{profile.company !== null ? (
+							<div className="company">
+								<FaRegBuilding /> {profile.company}
+							</div>
+						) : (
+							""
+						)}
+						{profile.blog !== null ? (
+							<div className="blog">
+								<FaLink /> {profile.blog}
+							</div>
+						) : (
+							""
+						)}
+						{profile.location !== null ? (
+							<div className="location">
+								<FaMapMarker /> {profile.location}
+							</div>
+						) : (
+							""
+						)}
 					</div>
 				</div>
 				<div className="content">
@@ -31,13 +70,25 @@ const UserResult = ({ userResult, clearHandler }) => {
 								return (
 									<li key={i}>
 										<h3 className="repo-name">
-											<a href={repo.html_url} target="_blank" rel="noreferrer">{repo.name}</a>
+											<a
+												href={repo.html_url}
+												target="_blank"
+												rel="noreferrer"
+											>
+												{repo.name}
+											</a>
 										</h3>
 										<p className="desc">
 											{repo.description}
 										</p>
 										<div className="stats">
-											{repo.language !== null ? <div className="language">{repo.language}</div> : ''}
+											{repo.language !== null ? (
+												<div className="language">
+													{repo.language}
+												</div>
+											) : (
+												""
+											)}
 											<div className="star">
 												<FaRegStar />{" "}
 												{repo.stargazers_count}
@@ -50,6 +101,19 @@ const UserResult = ({ userResult, clearHandler }) => {
 								);
 							})}
 					</ul>
+					<button
+						className="load-more"
+						disabled={
+							profile.public_repos < 10 ||
+							profile.public_repos - repos.length < 10
+								? true
+								: false
+						}
+						onClick={loadMoreHandler}
+						type="button"
+					>
+						Load more
+					</button>
 				</div>
 			</div>
 		</div>

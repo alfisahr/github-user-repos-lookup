@@ -22,8 +22,8 @@ function getProfile(username) {
 		});
 }
 
-function getRepos(username) {
-	return fetch(`https://api.github.com/users/${username}/repos${params}&per_page=100`)
+export function getRepos(username, page) {
+	return fetch(`https://api.github.com/users/${username}/repos${params}&per_page=10&page=${page}`)
 	.then((res) => res.json())
 		.then((repos) => {
 			if (repos.message) {
@@ -37,7 +37,7 @@ function getRepos(username) {
 export function getUserData(username) {
 	return Promise.all([
 		getProfile(username),
-		getRepos(username)
+		getRepos(username, 1)
 	]).then(([profile,repos]) => ({
 		profile,
 		repos

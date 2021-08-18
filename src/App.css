@@ -89,11 +89,22 @@
 .container .content {
   flex: 1;
   padding: 0 0 0 40px;
+  margin: 0 0 50px 0;
+}
+.container .content .load-more {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 700;
 }
 .container .content .repos-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 20px;
 }
 .container .content .repos-list li {
   border-bottom: 1px solid #eee;
